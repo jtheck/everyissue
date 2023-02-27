@@ -1,0 +1,41 @@
+
+
+
+
+body:after {
+  content:"";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  border-left: 2px dotted #4444;
+
+}
+
+#header {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+}
+
+.issue {
+  margin: 10px auto;
+  width: 60%;
+  height: 100px;
+  background: #666;
+}
+
+.extra_l {
+  border: 1px solid #aaa;
+  width: 43%;
+  padding: 3em;
+}
+
+
+.extra_r {
+  float: right;
+  border: 1px solid #aaa;
+  width: 43%;
+  padding: 3em;
+}

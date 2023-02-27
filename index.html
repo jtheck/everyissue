@@ -1,0 +1,140 @@
+
+
+<html>
+<head>
+  <title>EveryIssue.org</title>
+
+  <meta name="description" content="Compare and share facts, stats and reasoning for every issue.">
+  <meta name="keywords" content="civics, debate, informed, vote">
+  
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <link rel="stylesheet" type="text/css" href="index.css"/>
+
+
+  
+</head>
+
+<body>
+    <script>
+
+      function dir() {
+        let a = x - x1;
+        let b = y - y1;
+        if (!(parseInt(Math.sqrt(a * a + b * b), 10) < THRESHOLD)) {
+          if (x1 - x > Math.abs(y - y1)) {
+            return "left";
+          }
+          if (x - x1 > Math.abs(y - y1)) {
+            return "right";
+          }
+          if (y1 - y > Math.abs(x - x1)) {
+            return "up";
+          }
+          if (y - y1 > Math.abs(x - x1)) {
+            return "down";
+          }
+        } else {
+          return "none";
+        }
+      }
+
+      THRESHOLD = 125;
+
+      x = y = x1 = y1 = 0;
+
+      recordedTime = (new Date).getTime();
+
+
+      document.documentElement.addEventListener("touchstart", function(a) {
+        50 < (new Date).getTime() - recordedTime && (x = parseInt(a.changedTouches[0].pageX, 10), y = parseInt(a.changedTouches[0].pageY, 10), recordedTime = (new Date).getTime());
+      }, false);
+
+      document.documentElement.addEventListener("touchend", function(a) {
+        x1 = x;
+        y1 = y;
+        x = parseInt(a.changedTouches[0].pageX, 10);
+        y = parseInt(a.changedTouches[0].pageY, 10);
+
+        recordedTime = (new Date).getTime();
+        
+        document.getElementById("direction").innerHTML = dir() + recordedTime + "-" + (x1-x);
+      }, false);
+
+
+
+      document.documentElement.addEventListener("mousedown", function(e) {
+        x = e.clientX;
+        y = e.clientY;
+        recordedTime = (new Date).getTime();
+      }, false);
+
+
+      document.documentElement.addEventListener("mouseup", function(e) {
+        x1 = x;
+        y1 = y;
+        x = e.clientX;
+        y = e.clientY;
+        
+        console.log(e.path);
+
+        document.getElementById("direction").innerHTML = dir() + (recordedTime - (new Date).getTime()) + "-" + (x1-x);
+        
+        recordedTime = (new Date).getTime();
+      }, false);
+
+      document.documentElement.style.userSelect = "none";
+
+    </script>
+  <!-- 
+This is only needed for demonstration purposes.
+For production, modify the function dir() to return whatever is need for your app.
+-->
+<div id="direction"></div>
+
+  <div id="header">
+    <h1>
+      EveryIssue.org 🔍
+    </h1>
+    <h3>
+      Compare and share facts, stats and reasoning for every issue.
+    </h3>
+  </div>
+  <div style="position:absolute">
+    <p>Enter names in the fields, then click "Submit" to submit the form:</p>
+
+    <form id="frm1" action="/action_page.php">
+      First name: <input type="text" name="fname"><br>
+      Last name: <input type="text" name="lname"><br><br>
+      <input type="button" onclick="myFunction()" value="Submit">
+    </form>
+
+    <script>
+    function myFunction() {
+      alert("u wot")
+      // document.getElementById("frm1").submit();
+    }
+    </script>
+  </div>
+  
+  <br><br><br>
+  <br><br><br>
+
+  <div class="issue">
+    wtb intersectionObserver
+  </div>
+
+  <br><br>
+
+
+  <div class="extra_l">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </div>
+
+  <div class="extra_r">
+    <img src="data.jpg">
+  </div>
+
+
+</body>
+</html>
